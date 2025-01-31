@@ -50,3 +50,6 @@ TBD
 # Week 15 - 15 may 2025
 # Week 16 - 22 may 2025
 # Week 17 - 29 may 2025
+## Goals
+### Report Writing
+Report is due 2 June 2025.
