@@ -24,7 +24,7 @@ Weekly supervisor meetings occur on Thursdays at 13:30.
 
 # Week 1 - 6 feb 2025
 ## Goals
-### Initial Setup :on:
+### Initial Setup ✔️:
 This includes repository, notes, communication methods, schedule, etc.
 
 ### Literature Review :on:
