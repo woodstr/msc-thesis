@@ -1,0 +1,30 @@
+Main idea:
+ - replace decoder all together!
+	- localization done with ML
+	- segmentation done with ML
+	- rectification done with ML
+	- with good rectification, grid-style decoding should be trivial
+
+New challenges:
+ - rectification?
+ - grid-style decoding
+ - generalized to different shapes of DMCs (to work with dot-peen)
+	- improvement on data synthesis?
+	- this applies to rectification?
+		- maybe segmentation/rectification done with one model??
+ - once good decoding (hopefully) established, focus on speed
+	- may have to find balance between decode speed and rate
+
+
+ - instead segmentation/rectification, convert to bitwise binary classification!
+
+overall new idea:
+ - localizing the corners of the DMC?
+	- very similar to methods that work on facial recognition, predicting points and using 
+	  affine transformation to make the face have forward perspective
+	- lookup methods used for this! Some use many points!
+ - corners used in some form of rectification
+ - binary classification for encoded bits
+ - generation of dot-peen marking should contain variations in dot center (x, y) coords to replicate real 
+   world "jittering"
+ - analyse dot peen marking errors - what type of mistakes are present? Important to know for synthesis
