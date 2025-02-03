@@ -1,6 +1,8 @@
 # ML-based Data Matrix decoding
 This project seeks to create a Data Matrix decoder that relies on ML based methods.
 
+Weekly supervisor meetings occur on Thursdays at 13:30.
+
 # Quick Links
 * [Week 1](#week-1---6-feb-2025)
 * [Week 2](#week-2---13-feb-2025)
