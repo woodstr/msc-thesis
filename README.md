@@ -54,6 +54,16 @@ Pose estimation models:
 ### Alt Alt Idea
 For proof of concept, can quickly test out if YOLO11n-pose works well with easy examples of DMCs. If so - we can conclude if pose estimation makes sense or not. YOLO11 simply because of its usability.
 
+### Quick & Dirty Roadmap
+List of requirements in order:
+- Finalize research decisions at week 2 meeting
+- (lazer only - pose) Try with easy synthetic examples. Can model(s) estimate points correctly and decode them?
+- (lazer only) Try new method(s) on already established MAN dataset. (Probably requires new annotation). Try with pre and post binarization - which works better?
+- Implement custom decoder using point information.
+- (method works for lazer) Analyze dot peen marking data from MAN. What kind of issues are present in them? Think about how to synthesize realistic dot-peen markings.
+- Synthesize dot-peen marking examples.
+- Train and see if models can generalize for both lazer and dot-peen. If not, may need separate models.
+
 # Week 2 - 13 feb 2025
 # Week 3 - 20 feb 2025
 # Week 4 - 27 feb 2025
