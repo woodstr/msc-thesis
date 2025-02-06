@@ -65,6 +65,35 @@ List of requirements in order:
 - Train and see if models can generalize for both lazer and dot-peen. If not, may need separate models.
 
 # Week 2 - 13 feb 2025
+## Goals
+After meeting, decided on new approach to try! Yucheng away for next 2 meetings so have made plenty of new things to code and try. Below two new methods are possibly robust for both lazer and dot-peen samples!
+
+### YOLO Decoding :on:
+With good DMC examples and consistent DMC dimensions, decoding could be possible purely with YOLO!
+
+Would have to match the YOLO grid-size with DMC dimensions. This probably means we cannot use pretrained models.
+
+By matching the grid-size, we can have YOLO predict the x,y centers of every black DMC module! If a module is detected, we know it is black. If a module is not detected, we know it is white. We inherently know where the modules belong, which allows us to decode when we know which modules are detected or not (by assigning appropriate matrix values as 1s or 0s - which we can feed to a decoder algorithm for max possible decode speed).
+
+To try this approach, should first try with synthesized good examples, then later with (probably painfully) manually annotated examples to see if it works with the real-world example. Note that it almost definitely won't work with wrongly oriented and distorted samples, which the next method should fix.
+
+### Stacked Hourglass Localization & Rectification :on:
+By using a stacked hourglass method for detecting the 4 corners of a DMC in an image, we can effectifely localize and rectify.
+
+This rectification method works poorly for perspective distortions, but usually a user can point the camera more straight to the DMC so this may not be an issue.
+
+Should try with predicting 4 channels with heatmaps of the corner locations (as heatmaps - probably gaussian distributed).
+
+Probably start with 3 stacks as well, more and fewer should be experimented with though.
+
+Can use previous research paper synthesis for making relevant heatmap labels for training. Will have to alter to introduce small codes, since we will no longer use YOLO for cropping but this method for (effectively) cropping and rectifying.
+
+### Custom Decoding :on:
+Depending on how things go, custom decoding methods mentioned in last weeks outcome could be useful.
+
+## Outcome of Week
+TBD
+
 # Week 3 - 20 feb 2025
 # Week 4 - 27 feb 2025
 # Week 5 - 6 march 2025
