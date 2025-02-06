@@ -30,7 +30,7 @@ This includes repository, notes, communication methods, schedule, etc.
 ### Literature Review ✔️:
 Reading papers covering similar topics, emphasis on rectification / decoding method as this is new.
 
-### Roadmap :on:
+### Roadmap ✔️:
 An initial plan / idea should be written out to setup scope, requirements, and maybe a schedule for this project.
 
 ## Outcome of Week
