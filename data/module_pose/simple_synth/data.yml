@@ -1,0 +1,9 @@
+path: C:\Users\aidan\OneDrive\Desktop\itu\msc\courses\sem4\thesis\msc-thesis\data\module_pose\simple_synth
+train: images\train
+val: images\val
+test: images\test
+
+kpt_shape: [196, 3] # number of keypoints, number of dims (2 for x,y or 3 for x,y,visible)
+
+nc: 1 # number of classes
+names: ['DMC']

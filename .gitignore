@@ -1,3 +1,7 @@
+# CUSTOM
+models/hourglass_localization_rectification/*
+
+# BELOW IS FROM GITHUB TEMPLATE
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -68,7 +68,7 @@ List of requirements in order:
 ## Goals
 After meeting, decided on new approach to try! Yucheng away for next 2 meetings so have made plenty of new things to code and try. Below two new methods are possibly robust for both lazer and dot-peen samples!
 
-### YOLO Decoding :on:
+### YOLO Decoding :x:
 With good DMC examples and consistent DMC dimensions, decoding could be possible purely with YOLO!
 
 Would have to match the YOLO grid-size with DMC dimensions. This probably means we cannot use pretrained models.
@@ -77,7 +77,7 @@ By matching the grid-size, we can have YOLO predict the x,y centers of every bla
 
 To try this approach, should first try with synthesized good examples, then later with (probably painfully) manually annotated examples to see if it works with the real-world example. Note that it almost definitely won't work with wrongly oriented and distorted samples, which the next method should fix.
 
-### Stacked Hourglass Localization & Rectification :on:
+### Stacked Hourglass Localization & Rectification :heavy_check_mark:
 By using a stacked hourglass method for detecting the 4 corners of a DMC in an image, we can effectifely localize and rectify.
 
 This rectification method works poorly for perspective distortions, but usually a user can point the camera more straight to the DMC so this may not be an issue.
@@ -88,11 +88,16 @@ Probably start with 3 stacks as well, more and fewer should be experimented with
 
 Can use previous research paper synthesis for making relevant heatmap labels for training. Will have to alter to introduce small codes, since we will no longer use YOLO for cropping but this method for (effectively) cropping and rectifying.
 
-### Custom Decoding :on:
+### Custom Decoding :x:
 Depending on how things go, custom decoding methods mentioned in last weeks outcome could be useful.
 
 ## Outcome of Week
-TBD
+### YOLO Decoding
+YOLO decoding harder than anticipated. Tried both with classic YOLO object detection for each module, and YOLO pose/keypoint detection with each module, but both resulted in absolutely no detections on the test set... will focus on hourglass method and revisit at a later time.
+
+### Stacked Hourglass Localization & Rectification
+High success with very simple synthesised examples! Example image below.
+<img src="https://github.com/woodstr/msc-thesis/figures/github_readme/hourglass_simple.png" width="1500">
 
 # Week 3 - 20 feb 2025
 # Week 4 - 27 feb 2025

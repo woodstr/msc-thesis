@@ -1,0 +1,12 @@
+predict 4 points with hourglass method? Then apply affine transformation for rectification!
+Could replace bounding boxes alltogether!
+Then YOLO with matching grid dimensions for decoding!?
+
+Only YOLO for localizing modules and decoding! Only predicts x,y. If prediction there, yk bit is 1.
+If prediction not there, yk bit is 0.
+
+Try YOLO decoding with good examples first (matching YOLO grid)!
+
+Also try stacked hourglass model for detecting 4 channels with heatmaps (gaussian distributed?) for points.
+Probably start with 3 stacks.
+For training alter synthesis for making relevant heatmaps etc.

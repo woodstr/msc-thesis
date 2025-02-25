@@ -1,0 +1,4 @@
+new idea: alter synthesis and data.yml to have the yolo model do standard object detection for every single module!
+
+Possible issue with keypoint method (loss too relaxed): https://github.com/ultralytics/ultralytics/issues/2543
+
