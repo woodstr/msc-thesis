@@ -97,7 +97,7 @@ YOLO decoding harder than anticipated. Tried both with classic YOLO object detec
 
 ### Stacked Hourglass Localization & Rectification
 High success with very simple synthesised examples! Example image below.
-<img src="https://github.com/woodstr/msc-thesis/figures/github_readme/hourglass_simple.png" width="1500">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/hourglass_simple.png" width="1500">
 
 # Week 3 - 20 feb 2025
 # Week 4 - 27 feb 2025
