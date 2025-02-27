@@ -5,7 +5,7 @@ Weekly supervisor meetings occur on Thursdays at 13:30.
 
 # Quick Links
 * [Week 1](#week-1---6-feb-2025)
-* [Week 2+3+4](#week-2+3+4---13-27-feb-2025)
+* [Week 2+3+4](#week-2+3+4---13+20+27-feb-2025)
 * [Week 5](#week-5---6-march-2025)
 * [Week 6](#week-6---13-march-2025)
 * [Week 7](#week-7---20-march-2025)
@@ -62,7 +62,7 @@ List of requirements in order:
 - Synthesize dot-peen marking examples.
 - Train and see if models can generalize for both lazer and dot-peen. If not, may need separate models.
 
-# Week 2+3+4 - 13-27 feb 2025
+# Week 2+3+4 - 13+20+27 feb 2025
 ## Goals
 After meeting, decided on new approach to try! Yucheng away for next 2 meetings so have made plenty of new things to code and try. Below two new methods are possibly robust for both lazer and dot-peen samples!
 
