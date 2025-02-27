@@ -76,3 +76,5 @@ if __name__ == "__main__":
     input_tensor = torch.randn(1, 3, 256, 256) # Example input image
     output = model(input_tensor)
     print(output.shape) # Expected: (1, 4, H, W) representing 4 heatmaps
+    print(output[0].shape) # Expected: (4, H, W) representing 4 heatmaps
+    print(output[0, 0].shape) # Expected: (H, W) representing a heatmap
