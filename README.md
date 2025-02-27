@@ -5,9 +5,7 @@ Weekly supervisor meetings occur on Thursdays at 13:30.
 
 # Quick Links
 * [Week 1](#week-1---6-feb-2025)
-* [Week 2](#week-2---13-feb-2025)
-* [Week 3](#week-3---20-feb-2025)
-* [Week 4](#week-4---27-feb-2025)
+* [Week 2+3+4](#week-2+3+4---13-27-feb-2025)
 * [Week 5](#week-5---6-march-2025)
 * [Week 6](#week-6---13-march-2025)
 * [Week 7](#week-7---20-march-2025)
@@ -64,7 +62,7 @@ List of requirements in order:
 - Synthesize dot-peen marking examples.
 - Train and see if models can generalize for both lazer and dot-peen. If not, may need separate models.
 
-# Week 2 - 13 feb 2025
+# Week 2+3+4 - 13-27 feb 2025
 ## Goals
 After meeting, decided on new approach to try! Yucheng away for next 2 meetings so have made plenty of new things to code and try. Below two new methods are possibly robust for both lazer and dot-peen samples!
 
@@ -120,9 +118,23 @@ Notes on things to try for improvements:
 - Some optimization of gpu usage for faster training...
 - ...?
 
-# Week 3 - 20 feb 2025
-# Week 4 - 27 feb 2025
 # Week 5 - 6 march 2025
+## Goals
+### Stacked Hourglass Fixes :on:
+After discussion with Yucheng, some problems with my synthesis were discovered and other good changes discussed.
+
+Firstly, I have been generating the heatmaps incorrectly for augmented data. I had been applying shape and perspective transformations directly on the generated heatmaps, which is incorrect as the model should learn based on gaussian distributions of consistent size and shape, just in different locations. I should fix this so that the x,y coords for the location of these heatmaps is gotten by the augmentations, but the heatmaps should be generated afterwards so that they are round and consistently shaped.
+
+Secondly, as the gaussian distributions cover small areas of the heatmaps, it may be beneficial to assign more weight on the gaussian distributions than the surrounding pixels during loss calculation. The section on the loss function from [this page](https://medium.com/towards-data-science/human-pose-estimation-with-stacked-hourglass-network-and-tensorflow-c4e9f84fd3ce) might be useful (thanks Yucheng).
+
+Thirdly, trying with bigger heatmaps may also help.
+
+### Spatial Transformer Networks :on:
+If there is time, spatial transformer networks should also be tried. They could be very useful in terms of rectification as their loss is calculated based on the comparison between the rectified image from model output and the ground truth image.
+
+# Outcome of Week
+TBD.
+
 # Week 6 - 13 march 2025
 # Week 7 - 20 march 2025
 # Week 8 - 27 march 2025
