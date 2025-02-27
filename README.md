@@ -129,6 +129,9 @@ Secondly, as the gaussian distributions cover small areas of the heatmaps, it ma
 
 Thirdly, trying with bigger heatmaps may also help.
 
+### Small Optimization :on:
+It should be possible to decrease actual training time by further utilizing my GPU. By loading the generated data to GPU before saving, I should be able to load the data back directly to the GPU, skipping the step of loading to CPU and then GPU afterwards. This is more of a niceness thing to reduce time messing around with different training parameters.
+
 ### Spatial Transformer Networks :on:
 If there is time, spatial transformer networks should also be tried. They could be very useful in terms of rectification as their loss is calculated based on the comparison between the rectified image from model output and the ground truth image.
 
