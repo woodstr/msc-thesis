@@ -112,9 +112,11 @@ Notes on test set losses from tried parameters / settings:
 - 0.15 with 3 stacks and varying epochs/patiences and wider heatmaps (sigma = 2 - should be exactly like the first run!)
 
 Notes on things to try for improvements:
-- smaller heatmaps
-- more different stacks
-- some optimization of gpu usage for faster training...
+- Smaller heatmaps
+- More different stacks
+- Try with no augmentations (should be equal to simple viz) and then incrementally add more augments until it breaks again. This could help figure out what type of images it struggles with.
+  - Perhaps doing shape transformations on the heatmaps is confusing for the model? Maybe after the shape transformations the heatmaps should be redone so that they are equally sized.
+- Some optimization of gpu usage for faster training...
 - ...?
 
 # Week 3 - 20 feb 2025
