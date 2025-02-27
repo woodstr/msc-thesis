@@ -99,6 +99,24 @@ YOLO decoding harder than anticipated. Tried both with classic YOLO object detec
 High success with very simple synthesised examples! Example image below.
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/hourglass_simple.png" width="1500">
 
+Low success with complex synthesised examples... example image below of predicted and true heatmaps.
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/hourglass_complex_pred.png" width="1500">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/hourglass_complex_true.png" width="1500">
+Notes on test set losses from tried parameters / settings:
+- 0.06 with 3 stacks and varying epochs/patiences
+- 2.09 with 6 stacks and varying epochs/patiences
+- 36.09 with 6 stacks and early stopping patiences 1 and all epochs 100
+- 0.16 with 3 stacks and varying epochs/patiences and wider heatmaps (sigma = 5 instead of old of 2)
+- 2.34 with 3 stacks and varying epochs/patiences and wider heatmaps (sigma = 10 instead of old of 2)
+- 0.13 with 3 stacks and varying epochs/patiences and wider heatmaps (sigma = 3 instead of old of 2)
+- 0.15 with 3 stacks and varying epochs/patiences and wider heatmaps (sigma = 2 - should be exactly like the first run!)
+
+Notes on things to try for improvements:
+- smaller heatmaps
+- more different stacks
+- some optimization of gpu usage for faster training...
+- ...?
+
 # Week 3 - 20 feb 2025
 # Week 4 - 27 feb 2025
 # Week 5 - 6 march 2025
