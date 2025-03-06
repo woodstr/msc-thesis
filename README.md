@@ -120,7 +120,7 @@ Notes on things to try for improvements:
 
 # Week 5 - 6 march 2025
 ## Goals
-### Stacked Hourglass Fixes :on:
+### Stacked Hourglass Fixes :x:
 After discussion with Yucheng, some problems with my synthesis were discovered and other good changes discussed.
 
 Firstly, I have been generating the heatmaps incorrectly for augmented data. I had been applying shape and perspective transformations directly on the generated heatmaps, which is incorrect as the model should learn based on gaussian distributions of consistent size and shape, just in different locations. I should fix this so that the x,y coords for the location of these heatmaps is gotten by the augmentations, but the heatmaps should be generated afterwards so that they are round and consistently shaped.
@@ -132,12 +132,28 @@ Thirdly, trying with bigger heatmaps may also help.
 ### Small Optimization :x:
 It should be possible to decrease actual training time by further utilizing my GPU. By loading the generated data to GPU before saving, I should be able to load the data back directly to the GPU, skipping the step of loading to CPU and then GPU afterwards. This is more of a niceness thing to reduce time messing around with different training parameters.
 
-### Spatial Transformer Networks :on:
+### Spatial Transformer Networks :x:
 If there is time, spatial transformer networks should also be tried. They could be very useful in terms of rectification as their loss is calculated based on the comparison between the rectified image from model output and the ground truth image.
 
 # Outcome of Week
+### Stacked Hourglass Fixes
+Made many fixes and changes to the stacked hourglass network and complex synthesis, but the models still fail to produce accurate heatmaps. Changes made include:
+- Consistent heatmap generation. Heatmaps with single pixels are used before shape transformation, and only afterwards are used to generate full heatmaps. This ensures the heatmaps themselves are not warped.
+- Std of generated heatmaps increased.
+- MSE loss is weighted to increase loss for pixels close to center of heatmaps more than pixels away. Because I don't use "patches" for heatmaps, but distributions that cover the entire 64x64 heatmaps, I could not simply multiply over the patch, but raised the heatmaps to the power of 2. In this way the difference between lower and higher values is increased, effectively weighing as we desire.
+- Heatmap generation error during shape transform identified, reduced and fixed. Shape transform could sometimes result in the corners of the DMC coming outside the image. When this happened the pixels for generating heatmaps would be lost, resulting in poisonous training examples. A check was implemented to ensure all 4 pixels are present after the transform, and if not, the process retried.
+- Increased number of stacks to 8 to see if more model complexity was required.
+- Minor error during training found and fixed.
+
+Example of current produced heatmaps:
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/hourglass_complex_pred1.png" width="1500">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/hourglass_complex_true1.png" width="1500">
+
 ### Small Optimization
 While I could save from GPU and therefore load directly to GPU later, for some reason the augmentation process was slower on the GPU, so I've kept them on CPU.
+
+### Spatial Transformer Networks
+No time left to explore this.
 
 # Week 6 - 13 march 2025
 # Week 7 - 20 march 2025
