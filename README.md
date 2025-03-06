@@ -157,7 +157,7 @@ No time left to explore this.
 
 # Week 6 - 13 march 2025
 ## Goals
-### More Hourglass Fixes
+### More Hourglass Fixes :on:
 A fundamental mistake in the approach of stacked hourglass training has been identified. Losses should be calculated at every hourglass module, NOT just on the final output. These losses should be summed to perform backpropagation on. This is called intermediate supervision.
 
 Other fixes/changes include:
