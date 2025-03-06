@@ -156,6 +156,19 @@ While I could save from GPU and therefore load directly to GPU later, for some r
 No time left to explore this.
 
 # Week 6 - 13 march 2025
+## Goals
+### More Hourglass Fixes
+A fundamental mistake in the approach of stacked hourglass training has been identified. Losses should be calculated at every hourglass module, NOT just on the final output. These losses should be summed to perform backpropagation on. This is called intermediate supervision.
+
+Other fixes/changes include:
+- Normalizing heatmaps to range from 0-1
+- Add threshold to gaussian distributions to only include 95% confidence interval (mu +- 2*sigma)
+- Vizualize intermediate results (merge 4 corner heatmaps into 1). Then plot the results from each hourglass sequentially (1, 2, 3, ..., N)
+- Start with 3 hourglasses
+- Start without weighted losses
+
+## Outcome of Week
+
 # Week 7 - 20 march 2025
 # Week 8 - 27 march 2025
 # Week 9 - 3 april 2025
