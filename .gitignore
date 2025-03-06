@@ -1,5 +1,5 @@
 # CUSTOM
-models/hourglass_localization_rectification/*
+models/*
 
 # BELOW IS FROM GITHUB TEMPLATE
 # Byte-compiled / optimized / DLL files
