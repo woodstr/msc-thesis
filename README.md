@@ -172,7 +172,7 @@ Other fixes/changes include:
 Above changes, along with the below extra changes lead to successfull hourglass models!
 - RMSprop optimizer instead of Adam (RMSprop used in original paper)
 - Extra training loop with learning rate reduced by factor 5 after validation plateau
-- Shape transform rotations changed from any random angle to +-20 degrees
+- Shape transform rotations changed from any random angle to +-20 degrees. This was done because the hourglasses failed to distinguish between the corners on higher rotations, leading to each individual heatmap predicting all 4 corners. Potentially ok if we can detect orientation after, but for reduced scope to this change.
 
 For some reason the train example failed, but it is a special case. The average loss across all train/val/test samples was relatively equal.
 
