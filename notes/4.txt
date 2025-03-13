@@ -1,0 +1,4 @@
+Suggestion for this week:
+- Rectification (affine transform)
+- Test hourglasses on real MAN data
+- Return to custom decoding method
