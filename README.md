@@ -204,6 +204,33 @@ Hourglass heatmaps
 Note that a version trained with color transforms (blur, photometric distort, sharpness) yielded a failed model! Will need to look into this, as blur is very common when trying to scan these codes IRL.
 
 # Week 7 - 20 march 2025
+## Goals
+New ideas for improving hourglass performance, and a fundamental change in its structure.
+
+### Hourglass Fundamental Output Change :on:
+We realized that having 4 channels of heatmaps to produce is redundant in this case. After rectification, the orientation of the dmc is trivial, since we can attempt to decode 4 times (1 for each rotation of the code). Therefore, why not ask the model to simply produce a single heatmap with all 4 points in it? I have already seen this work when the augmentation includes all possible rotations, as it resulted in hourglass models that learned to produce, for each heatmap channel, all 4 points.
+
+This will simplify the training process for the model, and hopefully lead it to be less confused with complicated orientations of dmc's, since the hourglasses no longer need to differentiate between corners (which is especially hard to do with blurred images).
+
+Another change could be to introduce a second channel, as an inverted version of the first one. The weight mapping should also be inverted for this channel. This could further help the models performances.
+
+### Small Heatmap Change :on:
+Try with bigger sigma (try with 2 first)
+
+### Augmentation Changes :on:
+Changes can be done on image augmentations to potentially improve the model performance IRL:
+- random shifting
+- random scaling
+- full rotations
+If a corner ends up out-of-view, do not generate a gaussian dist for it. This will allow the model to give partial outputs, which may be useful to us when applying the model practically.
+
+If full rotations performs badly, can slowly introduce more rotations per epoch (fx. every XX epoch increase possible rotations by 10 degrees).
+
+### Loss Function Change :on:
+Perhaps binary cross entropy could perform better for us, should try it out.
+
+## Outcome of Week
+
 # Week 8 - 27 march 2025
 # Week 9 - 3 april 2025
 # Week 10 - 10 april 2025
