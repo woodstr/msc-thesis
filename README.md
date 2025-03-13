@@ -157,7 +157,7 @@ No time left to explore this.
 
 # Week 6 - 13 march 2025
 ## Goals
-### More Hourglass Fixes :on:
+### More Hourglass Fixes ✔️:
 A fundamental mistake in the approach of stacked hourglass training has been identified. Losses should be calculated at every hourglass module, NOT just on the final output. These losses should be summed to perform backpropagation on. This is called intermediate supervision.
 
 Other fixes/changes include:
@@ -168,6 +168,37 @@ Other fixes/changes include:
 - Start without weighted losses
 
 ## Outcome of Week
+## Successful Hourglass Results!
+Above changes, along with the below extra changes lead to successfull hourglass models!
+- RMSprop optimizer instead of Adam (RMSprop used in original paper)
+- Extra training loop with learning rate reduced by factor 5 after validation plateau
+- Shape transform rotations changed from any random angle to +-20 degrees
+
+For some reason the train example failed, but it is a special case. The average loss across all train/val/test samples was relatively equal.
+
+### Train Example
+Predicted heatmaps
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/train_heatmaps_pred.png" width="1500">
+True heatmaps
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/train_heatmaps_true.png" width="1500">
+Hourglass heatmaps
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/train_hourglasses.png" width="1500">
+
+### Validation Example
+Predicted heatmaps
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/val_heatmaps_pred.png" width="1500">
+True heatmaps
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/val_heatmaps_true.png" width="1500">
+Hourglass heatmaps
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/val_hourglasses.png" width="1500">
+
+### Test Example
+Predicted heatmaps
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/test_heatmaps_pred.png" width="1500">
+True heatmaps
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/test_heatmaps_true.png" width="1500">
+Hourglass heatmaps
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/test_hourglasses.png" width="1500">
 
 # Week 7 - 20 march 2025
 # Week 8 - 27 march 2025
