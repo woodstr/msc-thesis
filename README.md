@@ -200,6 +200,9 @@ True heatmaps
 Hourglass heatmaps
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_shape/test_hourglasses.png" width="1500">
 
+### Note
+Note that a version trained with color transforms (blur, photometric distort, sharpness) yielded a failed model! Will need to look into this, as blur is very common when trying to scan these codes IRL.
+
 # Week 7 - 20 march 2025
 # Week 8 - 27 march 2025
 # Week 9 - 3 april 2025
