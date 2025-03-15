@@ -74,12 +74,12 @@ class StackedHourglassNetwork(nn.Module):
         return outputs  # Output shape: (N, num_stacks, num_output_points, H, W)
 
 # Example usage
-if __name__ == "__main__":
-    model = StackedHourglassNetwork(num_stacks=3, num_features=256, num_output_points=4)
+if __name__ == '__main__':
+    model = StackedHourglassNetwork(num_stacks=3, num_features=256, num_output_points=1)
     input_tensor = torch.randn(8, 3, 256, 256) # Example batch of 8 images
     outputs = model(input_tensor)
-    print(outputs.shape) # Expected: (8, 3, 4, H, W) representing 8 batch outputs of 3 hourglass outputs of 4 heatmaps
+    print(outputs.shape) # Expected: (8, 3, 1, H, W) representing 8 batch outputs of 3 hourglass outputs of 1 heatmap
     for output in outputs:
-        print(output.shape) # Expected: (3, 4, H, W) representing 3 hourglass outputs of 4 heatmaps
-        print(output[0].shape) # Expected: (4, H, W) representing 4 heatmaps
-        print(output[0, 0].shape) # Expected: (H, W) representing a heatmap
+        print(output.shape) # Expected: (3, 1, H, W) representing 3 hourglass outputs of 1 heatmaps
+        print(output[0].shape) # Expected: (1, H, W) representing 1 heatmap
+        print(output[0, 0].shape) # Expected: (H, W) representing that heatmap
