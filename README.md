@@ -214,8 +214,8 @@ This will simplify the training process for the model, and hopefully lead it to 
 
 Another change could be to introduce a second channel, as an inverted version of the first one. The weight mapping should also be inverted for this channel. This could further help the models performances.
 
-### Small Heatmap Change :on:
-Try with bigger sigma (try with 2 first)
+### Small Heatmap Change ✔️
+Try with bigger sigma (try with 2 first).
 
 ### Augmentation Changes :on:
 Changes can be done on image augmentations to potentially improve the model performance IRL:
@@ -230,6 +230,38 @@ If full rotations performs badly, can slowly introduce more rotations per epoch 
 Perhaps binary cross entropy could perform better for us, should try it out.
 
 ## Outcome of Week
+### Hourglass Fundamental Output Change
+Good results from changing to single heatmap output!
+
+Train loader:
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_new/train_true.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_new/train_pred.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_new/train_hourglass.png" width="1500">
+
+Val loader:
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_new/val_true.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_new/val_pred.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_new/val_hourglass.png" width="1500">
+
+Test loader:
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_new/test_true.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_new/test_pred.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/successful_new/test_hourglass.png" width="1500">
+
+### Small Heatmap Change
+Increasing the std (sigma) to 2 to yield bigger heatmaps resulted in some similar results in the model with sigma 1, but with a poor example from a training sample.
+
+Good result (from test loader):
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/sigma_examples/sigma_2_test_pred.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/sigma_examples/sigma_2_test_hourglasses.png" width="1500">
+
+Bad result (from train loader):
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/sigma_examples/sigma_2_train_pred.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/sigma_examples/sigma_2_train_hourglasses.png" width="1500">
+
+Without more thorough testing, reverted to sigma=1. Will possibly explore higher sigma later down the line when optimizing the model for real-time usage.
 
 # Week 8 - 27 march 2025
 # Week 9 - 3 april 2025
