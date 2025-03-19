@@ -207,7 +207,7 @@ Note that a version trained with color transforms (blur, photometric distort, sh
 ## Goals
 New ideas for improving hourglass performance, and a fundamental change in its structure.
 
-### Hourglass Fundamental Output Change :on:
+### Hourglass Fundamental Output Change ✔️
 We realized that having 4 channels of heatmaps to produce is redundant in this case. After rectification, the orientation of the dmc is trivial, since we can attempt to decode 4 times (1 for each rotation of the code). Therefore, why not ask the model to simply produce a single heatmap with all 4 points in it? I have already seen this work when the augmentation includes all possible rotations, as it resulted in hourglass models that learned to produce, for each heatmap channel, all 4 points.
 
 This will simplify the training process for the model, and hopefully lead it to be less confused with complicated orientations of dmc's, since the hourglasses no longer need to differentiate between corners (which is especially hard to do with blurred images).
@@ -217,7 +217,7 @@ Another change could be to introduce a second channel, as an inverted version of
 ### Small Heatmap Change ✔️
 Try with bigger sigma (try with 2 first).
 
-### Augmentation Changes :on:
+### Augmentation Changes ✔️
 Changes can be done on image augmentations to potentially improve the model performance IRL:
 - random shifting
 - random scaling
@@ -226,7 +226,7 @@ If a corner ends up out-of-view, do not generate a gaussian dist for it. This wi
 
 If full rotations performs badly, can slowly introduce more rotations per epoch (fx. every XX epoch increase possible rotations by 10 degrees).
 
-### Loss Function Change :on:
+### Loss Function Change :x:
 Perhaps binary cross entropy could perform better for us, should try it out.
 
 ## Outcome of Week
@@ -263,6 +263,34 @@ Bad result (from train loader):
 
 Without more thorough testing, reverted to sigma=1. Will possibly explore higher sigma later down the line when optimizing the model for real-time usage.
 
+### Augmentation Changes
+Introducing more complex augmentations resulted in poor model learning. However, starting with simple augmentations and increasing augmentation complexity linearly each epoch resulted in good model performance! Results further below. Curriculum training method was done as the following, for specific epochs:
+- 0-9: no scale or translation augmentation
+- 10: introduce scale and translation in very small amounts
+- 11+ increase scale and translation by a small amount
+- ...
+- 150: (a reasonable) max scale and translation augmentation reached
+- train until convergence
+The introduction and increase of the two augmentations are done linearly.
+
+Train loader:
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/train_pred.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/train_true.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/train_hourglass.png" width="1500">
+
+Val loader:
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/val_pred.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/val_true.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/val_hourglass.png" width="1500">
+
+Test loader:
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/test_pred.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/test_true.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/test_hourglass.png" width="1500">
+
+Notes:
+- The 4 corner extraction method from the heatmap is still primitive (it currently selects top 4 brightest heatmap points) so the predictions failed on the validation example here, but can easily be fixed.
+- The test example failed to produce a good 4th corner heatmap. This is weird, but can perhaps be fixed with some minor changes to the current model and training methods used. It could also be possible to implement a method as part of the point extractor which guess a 4th point based on 3 other points.
+
+### Loss Function Change
+This has not been tried.
 # Week 8 - 27 march 2025
 # Week 9 - 3 april 2025
 # Week 10 - 10 april 2025
