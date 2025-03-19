@@ -294,6 +294,14 @@ Notes:
 
 ### Loss Function Change
 This has not been tried.
+
+### Test on MAN Data
+A basic test on real world MAN data shows that the model still needs extra work, especially when it comes to false positives.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/failed_real_test/pred.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/failed_real_test/true.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/failed_real_test/hourglasses.png" width="1500">
+
+
 # Week 8 - 27 march 2025
 # Week 9 - 3 april 2025
 # Week 10 - 10 april 2025
