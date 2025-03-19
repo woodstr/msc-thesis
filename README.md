@@ -274,14 +274,17 @@ Introducing more complex augmentations resulted in poor model learning. However,
 The introduction and increase of the two augmentations are done linearly.
 
 Train loader:
+
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/train_pred.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/train_true.png" width="250">
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/train_hourglass.png" width="1500">
 
 Val loader:
+
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/val_pred.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/val_true.png" width="250">
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/val_hourglass.png" width="1500">
 
 Test loader:
+
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/test_pred.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/test_true.png" width="250">
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/curriculum_learning/test_hourglass.png" width="1500">
 
