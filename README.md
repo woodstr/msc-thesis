@@ -301,8 +301,31 @@ A basic test on real world MAN data shows that the model still needs extra work,
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/failed_real_test/pred.png" width="250"> <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/failed_real_test/true.png" width="250">
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/failed_real_test/hourglasses.png" width="1500">
 
-
 # Week 8 - 27 march 2025
+## Goals
+### Augmentation Changes :on:
+There is a mismatch between synthetic images and MAN images. The real world MAN images have text, symbols, and patterns around the DMCs, and because there are no examples of these in the synthetic dataset the hourglass models are detecting corners of these.
+
+We can reduce this problem by introducing these elements in the synthetic dataset, specifically:
+- generate randomly places strings and patterns/icons around the DMC
+- these should be a part of the shape transform, as we see in the IRL images that they follow the same perspective etc.
+- can also randomly change the color of the DMC since this changes IRL sometimes too
+
+### Finetune Model :on:
+We can finetune the model to the MAN dataset to produce better results.
+
+The train/val/test split of the dataset should be the same as in the 7.5ECTS research project for the same comparison.
+
+### Retinex :on:
+We can use retinex to equalize the light in the input image before feeding to the model. These parameters will need to be manually tuned.
+
+This could potentially improve the models performance for images with heavy reflections / changes in light across the image.
+
+A comparison of the previous finetuned model should be made with a model finetuned to MAN images with retines preprocessing the images.
+
+## Outcome of Week
+TBD.
+
 # Week 9 - 3 april 2025
 # Week 10 - 10 april 2025
 # Week 11 - 17 april 2025
