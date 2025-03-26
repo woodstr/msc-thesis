@@ -303,7 +303,7 @@ A basic test on real world MAN data shows that the model still needs extra work,
 
 # Week 8 - 27 march 2025
 ## Goals
-### Augmentation Changes :on:
+### Augmentation Changes ✔️
 There is a mismatch between synthetic images and MAN images. The real world MAN images have text, symbols, and patterns around the DMCs, and because there are no examples of these in the synthetic dataset the hourglass models are detecting corners of these.
 
 We can reduce this problem by introducing these elements in the synthetic dataset, specifically:
@@ -311,12 +311,12 @@ We can reduce this problem by introducing these elements in the synthetic datase
 - these should be a part of the shape transform, as we see in the IRL images that they follow the same perspective etc.
 - can also randomly change the color of the DMC since this changes IRL sometimes too
 
-### Finetune Model :on:
+### Finetune Model ✔️
 We can finetune the model to the MAN dataset to produce better results.
 
 The train/val/test split of the dataset should be the same as in the 7.5ECTS research project for the same comparison.
 
-### Retinex :on:
+### Retinex ✔️
 We can use retinex to equalize the light in the input image before feeding to the model. These parameters will need to be manually tuned.
 
 This could potentially improve the models performance for images with heavy reflections / changes in light across the image.
@@ -324,7 +324,31 @@ This could potentially improve the models performance for images with heavy refl
 A comparison of the previous finetuned model should be made with a model finetuned to MAN images with retines preprocessing the images.
 
 ## Outcome of Week
-TBD.
+### Augmentation Changes
+Added randomized text and symbols around synthetic DMC images. It appears to have reduced the problem of false positives somewhat. However, there are still false positives present in many of the real images, but the heatmaps produced are more likely to have the brightest pixels in the correct locations. The model still fails with dot-peen markings.
+
+Keep in mind that the point extraction method is still rudimentary.
+
+Successfull extraction.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/text_synth/success.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/text_synth/success_hourglasses.png" width="1500">
+
+Somewhat successful extraction.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/text_synth/somewhat.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/text_synth/somewhat_hourglasses.png" width="1500">
+
+Failed extraction.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/text_synth/dotpeen.png" width="250">
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/text_synth/dotpeen_hourglasses.png" width="1500">
+
+### Finetuning
+Finetuning the model proves difficult. With the same training method as the synthetic training, or with a reduced learning rate, the model fails to improve on the validation loss after the second epoch. I suspect we need more images for training, and therefore propose that I go to the factory this Friday to take more images of different components with the codes myself.
+
+### Retinex
+While retinex was implemented, there is no difference between a model trained with or without its use. Until there are better results on the real images, it will be hard to see the affect of retinex.
 
 # Week 9 - 3 april 2025
 # Week 10 - 10 april 2025
