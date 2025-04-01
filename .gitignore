@@ -1,5 +1,6 @@
 # CUSTOM
 models/*
+yolo/runs/obb/train9/weights/*
 
 # BELOW IS FROM GITHUB TEMPLATE
 # Byte-compiled / optimized / DLL files
