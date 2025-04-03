@@ -9,8 +9,8 @@ Weekly supervisor meetings occur on Thursdays at 13:30.
 * [Week 5](#week-5---6-march-2025)
 * [Week 6](#week-6---13-march-2025)
 * [Week 7](#week-7---20-march-2025)
-* [Week 8](#week-8---27-march-2025) <-- current
-* [Week 9](#week-9---3-april-2025)
+* [Week 8](#week-8---27-march-2025)
+* [Week 9](#week-9---3-april-2025) <-- current
 * [Week 10](#week-10---10-april-2025)
 * [Week 11](#week-11---17-april-2025)
 * [Week 12](#week-12---24-april-2025)
@@ -351,6 +351,22 @@ Finetuning the model proves difficult. With the same training method as the synt
 While retinex was implemented, there is no difference between a model trained with or without its use. Until there are better results on the real images, it will be hard to see the affect of retinex.
 
 # Week 9 - 3 april 2025
+## Goals
+### Return of YOLO
+Due to amount of false positive corners detected by stacked hourglasses, oriented YOLO will be tried as step 1 for cropping down to the DMC.
+
+This new oriented model will be finetuned to the MAN data, and then used in the training process of a new stacked hourglass model.
+
+On failed YOLO crops, the failed image is saved for further training the YOLO model to deal with failure cases.
+
+## Outcome of Week
+### Return of YOLO
+The new oriented YOLO model works well enough for cropping. Some padding was added on its crops to reduce the rate at which it cuts off the corners of the DMC. There were still cases of the model cutting off the DMCs, or cropping to some falsely detected DMC.
+
+These cases are currently still being saved as a stacked hourglass is still training.
+
+The training process for the hourglass has become longer due to the use of YOLO _during_ training, but will hopefully yield more consistent results that previous stacked hourglasses.
+
 # Week 10 - 10 april 2025
 # Week 11 - 17 april 2025
 # Week 12 - 24 april 2025
