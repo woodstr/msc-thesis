@@ -352,7 +352,7 @@ While retinex was implemented, there is no difference between a model trained wi
 
 # Week 9 - 3 april 2025
 ## Goals
-### Return of YOLO
+### Return of YOLO ✔️
 Due to amount of false positive corners detected by stacked hourglasses, oriented YOLO will be tried as step 1 for cropping down to the DMC.
 
 This new oriented model will be finetuned to the MAN data, and then used in the training process of a new stacked hourglass model.
@@ -368,6 +368,19 @@ These cases are currently still being saved as a stacked hourglass is still trai
 The training process for the hourglass has become longer due to the use of YOLO _during_ training, but will hopefully yield more consistent results that previous stacked hourglasses.
 
 # Week 10 - 10 april 2025
+## Goals
+### YOLO Improvement :on:
+Yucheng proposed that if we alter the loss calculation of the YOLO rotation to be clamped between 0-90, we can have the model be uninterested in terms of rotations of 90, 180, 270 degrees etc., and learn the bounding boxes better.
+E.g. the angle 91 would become 1, and 180 would become 90.
+
+To make this change I will have to delve into the YOLO code and find where I can change this loss calculation. I may have to set up the yolo files locally, which could be a pain.
+
+### YOLO class changes :on:
+We can further utilize the YOLO model by involving class predictions for whether a DMC is laser or dot-peen marked. This is an easy change and just involves going through the annotations in roboflow again.
+
+## Outcome of Week
+TBD
+
 # Week 11 - 17 april 2025
 # Week 12 - 24 april 2025
 # Week 13 - 1 may 2025
