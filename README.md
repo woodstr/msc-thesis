@@ -10,8 +10,8 @@ Weekly supervisor meetings occur on Thursdays at 13:30.
 * [Week 6](#week-6---13-march-2025)
 * [Week 7](#week-7---20-march-2025)
 * [Week 8](#week-8---27-march-2025)
-* [Week 9](#week-9---3-april-2025) <-- current
-* [Week 10](#week-10---10-april-2025)
+* [Week 9](#week-9---3-april-2025)
+* [Week 10](#week-10---10-april-2025) <-- current
 * [Week 11](#week-11---17-april-2025)
 * [Week 12](#week-12---24-april-2025)
 * [Week 13](#week-13---1-may-2025)
