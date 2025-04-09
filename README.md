@@ -375,11 +375,12 @@ E.g. the angle 91 would become 1, and 180 would become 90.
 
 To make this change I will have to delve into the YOLO code and find where I can change this loss calculation. I may have to set up the yolo files locally, which could be a pain.
 
-### YOLO class changes :on:
+### YOLO class changes ✔️:
 We can further utilize the YOLO model by involving class predictions for whether a DMC is laser or dot-peen marked. This is an easy change and just involves going through the annotations in roboflow again.
 
 ## Outcome of Week
-TBD
+### YOLO class changes
+YOLO class changes were made and the class predictions work well :)
 
 # Week 11 - 17 april 2025
 # Week 12 - 24 april 2025
