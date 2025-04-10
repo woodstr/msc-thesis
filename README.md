@@ -378,6 +378,16 @@ To make this change I will have to delve into the YOLO code and find where I can
 ### YOLO class changes ✔️:
 We can further utilize the YOLO model by involving class predictions for whether a DMC is laser or dot-peen marked. This is an easy change and just involves going through the annotations in roboflow again.
 
+### YOLO Improvement
+A custom OBBTrainer class was made, which copies the original ultralytics OBBTrainer but adds to the preprocess_batch function. Now the preprocess_batch does all of the original preprocessing, but the ground truth angle is folded to be between 0-90 degrees.
+
+Strangley, this change fails to force some values in between the range. Some rotation values .01 above 90 appear (which is fine), but some values appear very close to 180, instead of being 0.
+
+Also, when forcing the angle to be 0, the model still sometimes predicts angles outside of this range. Perhaps training from scratch will make better use of this method, instead of using the pretrained model.
+
+### Extra: YOLO + Hourglass Training
+I did some experimenting with YOLO cropping followed by hourglass corner prediction. Initial results look very good!
+
 ## Outcome of Week
 ### YOLO class changes
 YOLO class changes were made and the class predictions work well :)
