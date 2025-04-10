@@ -393,6 +393,26 @@ Also, when forcing the angle to be 0, the model still sometimes predicts angles 
 I did some experimenting with YOLO cropping followed by hourglass corner prediction. Initial results look very good!
 
 # Week 11 - 17 april 2025
+## Goals
+### YOLO fixes :on:
+Need to add the same changes I did to the training process, but to validation and test.
+
+### Template Matching (Thx Yucheng!) :on:
+Yucheng showed me a promising method to help decode dot-peen marked components!
+
+Basically, given a DMC, his method will (from memory, may be a bit incorrect, he will send me example code):
+- Use Retinex to reduce lighting noise by getting reflection map
+- Use OpenCV methods for estimating a valid template. A template in this case is e.g. a crop of a single dot-peen mark, representing how all other dot-peen markings should look.
+- Template is then used for template matching. This process finds all other dot-peen markings that are similar to the template dot-peen.
+- Once matched, most (hopefully all, but previous methods can be improved) dot-peen marks will be found and can be used for estimating a grid for the DMC.
+- The grid can be used to decode the DMC without the decoder.
+- Alternatively, the dot-peen marks locations could be used to rectify and transform the image in a way that the standard decoder can use.
+
+I need to mess around with Yuchengs code a bit to understand how it all works, but I should also read material and watch videos explaining how different methods (e.g. template matching) work!
+
+## Outcome of Week
+TBD
+
 # Week 12 - 24 april 2025
 # Week 13 - 1 may 2025
 # Week 14 - 8 may 2025
