@@ -11,8 +11,8 @@ Weekly supervisor meetings occur on Thursdays at 13:30.
 * [Week 7](#week-7---20-march-2025)
 * [Week 8](#week-8---27-march-2025)
 * [Week 9](#week-9---3-april-2025)
-* [Week 10](#week-10---10-april-2025) <-- current
-* [Week 11](#week-11---17-april-2025)
+* [Week 10](#week-10---10-april-2025)
+* [Week 11](#week-11---17-april-2025) <-- current
 * [Week 12](#week-12---24-april-2025)
 * [Week 13](#week-13---1-may-2025)
 * [Week 14](#week-14---8-may-2025)
@@ -409,6 +409,11 @@ Basically, given a DMC, his method will (from memory, may be a bit incorrect, he
 - Alternatively, the dot-peen marks locations could be used to rectify and transform the image in a way that the standard decoder can use.
 
 I need to mess around with Yuchengs code a bit to understand how it all works, but I should also read material and watch videos explaining how different methods (e.g. template matching) work!
+
+But, first thing I should do is:
+- find all dot-peens that fail to decode (likely all)
+- use Yucheng code
+- try to build a grid for decoding
 
 ## Outcome of Week
 TBD
