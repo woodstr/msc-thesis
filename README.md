@@ -369,7 +369,7 @@ The training process for the hourglass has become longer due to the use of YOLO 
 
 # Week 10 - 10 april 2025
 ## Goals
-### YOLO Improvement :on:
+### YOLO Improvement ✔️:
 Yucheng proposed that if we alter the loss calculation of the YOLO rotation to be clamped between 0-90, we can have the model be uninterested in terms of rotations of 90, 180, 270 degrees etc., and learn the bounding boxes better.
 E.g. the angle 91 would become 1, and 180 would become 90.
 
