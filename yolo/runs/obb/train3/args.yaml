@@ -3,16 +3,16 @@ mode: train
 model: yolo11n-obb.pt
 data: ../data/MAN/roboflow_oriented_boxes/data.yaml
 epochs: 100
-time: null
+time: 24
 patience: 100
 batch: 16
 imgsz: 640
 save: true
-save_period: -1
+save_period: 1
 cache: false
-device: null
+device: cuda
 workers: 8
-project: null
+project: ../yolo/runs/obb
 name: train3
 exist_ok: false
 pretrained: true
@@ -103,4 +103,4 @@ erasing: 0.4
 crop_fraction: 1.0
 cfg: null
 tracker: botsort.yaml
-save_dir: c:\Users\aidan\OneDrive\Desktop\itu\msc\courses\sem4\thesis\msc-thesis\yolo\runs\obb\train3
+save_dir: ..\yolo\runs\obb\train3

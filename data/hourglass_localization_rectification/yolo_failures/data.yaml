@@ -1,0 +1,13 @@
+train: C:\\Users\\aidan\\OneDrive\\Desktop\\itu\\msc\\courses\\sem4\\thesis\\msc-thesis\\data\\hourglass_localization_rectification\\yolo_failures\\train\\images
+val: C:\\Users\\aidan\\OneDrive\\Desktop\\itu\\msc\\courses\\sem4\\thesis\\msc-thesis\\data\\hourglass_localization_rectification\\yolo_failures\\val\\images
+# test: C:\\Users\\aidan\\OneDrive\\Desktop\\itu\\msc\\courses\\sem4\\thesis\\msc-thesis\\data\\MAN\\roboflow_oriented_boxes\\test\\images
+
+nc: 1
+names: ['dmc']
+
+roboflow:
+  workspace: rs-xldmw
+  project: dmc-oriented-boxes-train
+  version: 1
+  license: Public Domain
+  url: https://universe.roboflow.com/rs-xldmw/dmc-oriented-boxes-train/dataset/1
