@@ -394,7 +394,7 @@ I did some experimenting with YOLO cropping followed by hourglass corner predict
 
 # Week 11 - 17 april 2025
 ## Goals
-### YOLO fixes :on:
+### YOLO fixes :x:
 Need to add the same changes I did to the training process, but to validation and test.
 
 ### Template Matching (Thx Yucheng!) :on:
@@ -416,7 +416,16 @@ But, first thing I should do is:
 - try to build a grid for decoding
 
 ## Outcome of Week
-TBD
+### YOLO Fixes
+It turns out that the YOLO fixes are not required and that the orientation works differently than I expected.
+
+The YOLO OBB model does not predict the orientation in the range of 0-360, but actually only in the range of 0-180. The angle is designed only as a way to reduce background noise in produced bounding boxes, instead of it being to actually know how an object is oriented. In a sense, this means the model cannot predict e.g. from an aerial image of a car, which way the car is facing, but will simply orient the bounding box nicely around the car. The image below shows how the angle is represented.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/angle_representation.png" width="500">
+
+What's strange to me, is that even though the predicted angle is explained as being between 0-180 in that image, during training no angle is ever above 90 degrees. I believe that the way Ultralytics processes the label input from "x1 y1 x2 y2 x3 y3 x4 y4" to "x y w h r" is done in a way where max possible r is 90, which should mean the model is penalized for predicting above 90 degrees? Despite this, the model will (in rare cases) predict angle in the 90-180 range. Confusing.
+
+Bottom line is that YOLO obb will not be able to predict the exact orientation of DMCs, so we will either have to decode on multiple orientations or have an extra step using the stacked hourglasses for orientation.
 
 # Week 12 - 24 april 2025
 # Week 13 - 1 may 2025
