@@ -1,6 +1,7 @@
 # CUSTOM
 models/*
 yolo/runs/obb/train9/weights/*
+.vscode
 
 # BELOW IS FROM GITHUB TEMPLATE
 # Byte-compiled / optimized / DLL files
