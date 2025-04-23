@@ -5,15 +5,14 @@ Weekly supervisor meetings occur on Thursdays at 13:30.
 
 # Quick Links
 * [Week 1](#week-1---6-feb-2025)
-* [Week 2 to 4](#week-2-to-4---13-to-27-feb-2025)
+* [Week 2 to 4](#week-2-to-4---27-feb-2025)
 * [Week 5](#week-5---6-march-2025)
 * [Week 6](#week-6---13-march-2025)
 * [Week 7](#week-7---20-march-2025)
 * [Week 8](#week-8---27-march-2025)
 * [Week 9](#week-9---3-april-2025)
 * [Week 10](#week-10---10-april-2025)
-* [Week 11](#week-11---17-april-2025) <-- current
-* [Week 12](#week-12---24-april-2025)
+* [Week 11 to 12](#week-11-to-12---24-april-2025) <-- current
 * [Week 13](#week-13---1-may-2025)
 * [Week 14](#week-14---8-may-2025)
 * [Week 15](#week-15---15-may-2025)
@@ -62,7 +61,7 @@ List of requirements in order:
 - Synthesize dot-peen marking examples.
 - Train and see if models can generalize for both lazer and dot-peen. If not, may need separate models.
 
-# Week 2 to 4 - 13 to 27 feb 2025
+# Week 2 to 4 - 27 feb 2025
 ## Goals
 After meeting, decided on new approach to try! Yucheng away for next 2 meetings so have made plenty of new things to code and try. Below two new methods are possibly robust for both lazer and dot-peen samples!
 
@@ -392,7 +391,7 @@ Also, when forcing the angle to be 0, the model still sometimes predicts angles 
 ### Extra: YOLO + Hourglass Training
 I did some experimenting with YOLO cropping followed by hourglass corner prediction. Initial results look very good!
 
-# Week 11 - 17 april 2025
+# Week 11 to 12 - 24 april 2025
 ## Goals
 ### YOLO fixes :x:
 Need to add the same changes I did to the training process, but to validation and test.
@@ -427,7 +426,33 @@ What's strange to me, is that even though the predicted angle is explained as be
 
 Bottom line is that YOLO obb will not be able to predict the exact orientation of DMCs, so we will either have to decode on multiple orientations or have an extra step using the stacked hourglasses for orientation.
 
-# Week 12 - 24 april 2025
+### Template Matching
+Successfully decoded using template matching with manually retrieved template! Process with example below.
+
+First, image is altered using retinex to make lighting more uniform. Then, given a template, matching algorithm tries to match contours of template in image to create bounding boxes on all similar blobs in image.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/template_matching/template_matching.png" width="750">
+
+KMeans clustering is used on the x and y dimensions (separately) to estimate which blobs belong together to estimate a grid. Here, n_neighbours was given as 16 as most if not all DMCs in the dataset are 16x16.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/template_matching/grid_estimation.png" width="250">
+
+The intersections of the gridlines are retrieved.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/template_matching/grid_intersections.png" width="250">
+
+Then, for each bounding box found earlier, the grid intersection closest to it are found.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/template_matching/closest_intersections.png" width="250">
+
+Finally, since we now know which bounding box belongs to which grid intersection, we can rebuild the original DMC.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/template_matching/rebuilding_dmc.png" width="250">
+
+Notice however in this example there is an error on 1 module. This error occured during the closest intersection calculation, as there is some slight warping present on the DMC near the bottom of it where it seems to shear slightly to the right. In this example this problem is luckily solved, as the module is part of the alignment pattern and can therefore be fixed before actual decoding. The chances of the problem occuring can be reduced by using more advanced methods for gridline estimation, such as linear regression after KMeans clustering.
+
+Currently the actual decoding is still done with pylibdmtx, where the rebuilt DMC matrix is converted to an image and fed to the library's decoding algorithm. However, this can be avoided by finding and rewriting the original libdmtx code that converts DMC matrix to interesting data, I just haven't done it yet because even though it is a very specific process it is quite complex.
+
 # Week 13 - 1 may 2025
 # Week 14 - 8 may 2025
 # Week 15 - 15 may 2025
