@@ -396,7 +396,7 @@ I did some experimenting with YOLO cropping followed by hourglass corner predict
 ### YOLO fixes :x:
 Need to add the same changes I did to the training process, but to validation and test.
 
-### Template Matching (Thx Yucheng!) :on:
+### Template Matching (Thx Yucheng!) ✔️:
 Yucheng showed me a promising method to help decode dot-peen marked components!
 
 Basically, given a DMC, his method will (from memory, may be a bit incorrect, he will send me example code):
