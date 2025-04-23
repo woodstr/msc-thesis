@@ -433,7 +433,7 @@ First, image is altered using retinex to make lighting more uniform. Then, given
 
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/template_matching/template_matching.png" width="750">
 
-KMeans clustering is used on the x and y dimensions (separately) to estimate which blobs belong together to estimate a grid. Here, n_neighbours was given as 16 as most if not all DMCs in the dataset are 16x16.
+KMeans clustering is used on the x and y dimensions (separately) to estimate which blobs belong together to estimate a grid. Here, n_clusters was given as 16 as most if not all DMCs in the dataset are 16x16.
 
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/template_matching/grid_estimation.png" width="250">
 
