@@ -454,6 +454,34 @@ Notice however in this example there is an error on 1 module. This error occured
 Currently the actual decoding is still done with pylibdmtx, where the rebuilt DMC matrix is converted to an image and fed to the library's decoding algorithm. However, this can be avoided by finding and rewriting the original libdmtx code that converts DMC matrix to interesting data, I just haven't done it yet because even though it is a very specific process it is quite complex.
 
 # Week 13 - 1 may 2025
+## Goals
+### UNet for Finding Templates :on:
+For finding initial templates for template matching, methods used for detecting braille dots can be used.
+
+I will bulk train a UNet model on braille datasets and finetune on MAN data. The UNet model will create heatmaps of the dot detections, which I can then use for getting templates for the template matching algorithm.
+
+Braille datasets from snoop2head github. I will have to create the labels for the MAN images, but I can speed up the labelling process by manually cropping a couple templates for each image and using template matching to get the other labels. The label format is lines of x y coords.
+
+Will combine all braille datasets together for bulk training, LR in finetuning will be reduced by factor 10 (may alter this if poor results).
+
+### Better Grid Fitting :on:
+Current grid fitting is a bit too simple and should be improved. Yucheng informed me there are different grid fitting algorithms out there so I will look into that later on.
+
+### Template Matching Improvements :on:
+Depending on performance on template matching, will maybe have to alter it to get more templates from template matches, so maybe 2-3 runs of template matching with newer templates.
+
+### Decoding Pipeline :on:
+If there's time, I should finish up the decoding pipeline:
+- YOLO oriented crop (may rollback to non oriented YOLO if orientations are poor)
+- UNet for creating dot heatmaps of likely good templates
+- Method for getting templates from heatmap. Method will likely have to find some heatmap dots close to eachother (e.g. an area where there are 2x2 dots or L dots or sequential dots), then average around them to get 2-4 good templates.
+- Template matching
+- Estimate grid
+- Decode
+
+## Outcome of Week
+TBD
+
 # Week 14 - 8 may 2025
 # Week 15 - 15 may 2025
 # Week 16 - 22 may 2025
