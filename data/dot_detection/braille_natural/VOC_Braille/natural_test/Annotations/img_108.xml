@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+   <folder>DBMI</folder>
+   <filename>img_108.jpg</filename>
+   <size>
+      <width>307</width>
+      <height>396</height>
+      <depth>3</depth>
+   </size>
+   <object>
+      <name>Braille</name>
+      <pose>Rear</pose>
+      <truncated>0</truncated>
+      <difficult>0</difficult>
+      <bndbox>
+         <xmin>31</xmin>
+         <xmax>135</xmax>
+         <ymin>201</ymin>
+         <ymax>356</ymax>
+      </bndbox>
+   </object>
+   <object>
+      <name>Braille</name>
+      <pose>Rear</pose>
+      <truncated>0</truncated>
+      <difficult>0</difficult>
+      <bndbox>
+         <xmin>143</xmin>
+         <xmax>248</xmax>
+         <ymin>202</ymin>
+         <ymax>361</ymax>
+      </bndbox>
+   </object>
+</annotation>
