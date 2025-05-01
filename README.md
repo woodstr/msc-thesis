@@ -455,7 +455,7 @@ Currently the actual decoding is still done with pylibdmtx, where the rebuilt DM
 
 # Week 13 - 1 may 2025
 ## Goals
-### UNet for Finding Templates :on:
+### UNet for Finding Templates 💱:
 For finding initial templates for template matching, methods used for detecting braille dots can be used.
 
 I will bulk train a UNet model on braille datasets and finetune on MAN data. The UNet model will create heatmaps of the dot detections, which I can then use for getting templates for the template matching algorithm.
@@ -464,7 +464,7 @@ Braille datasets from snoop2head github. I will have to create the labels for th
 
 Will combine all braille datasets together for bulk training, LR in finetuning will be reduced by factor 10 (may alter this if poor results).
 
-### Better Grid Fitting :on:
+### Better Grid Fitting ✔️:
 Current grid fitting is a bit too simple and should be improved. Yucheng informed me there are different grid fitting algorithms out there so I will look into that later on.
 
 ### Template Matching Improvements :on:
@@ -480,7 +480,25 @@ If there's time, I should finish up the decoding pipeline:
 - Decode
 
 ## Outcome of Week
-TBD
+### UNet for Finding Templates
+Model training and finetuning set up. Manual MAN labels still in progress.
+
+Problem with MAN patch preparation needs to be fixed.
+
+### Better Grid Fitting
+Better grid fitting achieved!
+
+New grid estimates works first by creating a 16x16 grid template with decent starting parameters.
+| Parameter  | Interpretation                                           | Starting Point Estimation                                                           |
+| ---------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| xΘ         | origin x coord of grid (grid built from top left corner) | Estimated from most top-left matched templated                                      |
+| yΘ         | origin y coord of grid (grid built from top left corner) | Estimated from most top-left matched templated                                      |
+| a, d       | spacing between gridlines                                | (not implemented) Estimated from average point euclidean distances in neighborhoods |
+| b, c       | b, c: skewing/shearing                                   | (not implemented) Estimated from average sloped between points in neighborhoods     |
+
+Then a local minimization of the parameters is done based on the mean squared distance between observed points and grid template points. With a good enough starting estimate the local minimization is very effective, but with too poor starting parameters the local minima is not the global minima and the minimization fails.
+
+Current implementation of origin estimation and hard coded abcd parameters means the current grid fitting works on -4 to 4 degree rotated images but hopefully much better with other parameter estimations.
 
 # Week 14 - 8 may 2025
 # Week 15 - 15 may 2025
