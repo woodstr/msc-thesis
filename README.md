@@ -489,12 +489,12 @@ Problem with MAN patch preparation needs to be fixed.
 Better grid fitting achieved!
 
 New grid estimates works first by creating a 16x16 grid template with decent starting parameters.
-| Parameter  | Interpretation                                           | Starting Point Estimation                                                           |
-| ---------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| xΘ         | origin x coord of grid (grid built from top left corner) | Estimated from most top-left matched templated                                      |
-| yΘ         | origin y coord of grid (grid built from top left corner) | Estimated from most top-left matched templated                                      |
-| a, d       | spacing between gridlines                                | (not implemented) Estimated from average point euclidean distances in neighborhoods |
-| b, c       | b, c: skewing/shearing                                   | (not implemented) Estimated from average sloped between points in neighborhoods     |
+| Parameter  | Interpretation                                           | Starting Point Estimation                                                    |
+| ---------- | -------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| xΘ         | origin x coord of grid (grid built from top left corner) | Estimated from most top-left matched templated                               |
+| yΘ         | origin y coord of grid (grid built from top left corner) | Estimated from most top-left matched templated                               |
+| a, d       | spacing between gridlines                                | Estimated from average point euclidean distances in neighborhoods            |
+| b, c       | b, c: skewing/shearing                                   | (still fixing) Estimated from average slopes between points in neighborhoods |
 
 Then a local minimization of the parameters is done based on the mean squared distance between observed points and grid template points. With a good enough starting estimate the local minimization is very effective, but with too poor starting parameters the local minima is not the global minima and the minimization fails.
 
