@@ -13,8 +13,8 @@ Weekly supervisor meetings occur on Thursdays at 13:30.
 * [Week 9](#week-9---3-april-2025)
 * [Week 10](#week-10---10-april-2025)
 * [Week 11 to 12](#week-11-to-12---24-april-2025)
-* [Week 13](#week-13---1-may-2025) <-- current
-* [Week 14](#week-14---8-may-2025)
+* [Week 13](#week-13---1-may-2025)
+* [Week 14](#week-14---8-may-2025) <-- current
 * [Week 15](#week-15---15-may-2025)
 * [Week 16](#week-16---22-may-2025)
 * [Week 17](#week-17---29-may-2025)
@@ -455,7 +455,7 @@ Currently the actual decoding is still done with pylibdmtx, where the rebuilt DM
 
 # Week 13 - 1 may 2025
 ## Goals
-### UNet for Finding Templates 💱:
+### UNet for Finding Templates :x:
 For finding initial templates for template matching, methods used for detecting braille dots can be used.
 
 I will bulk train a UNet model on braille datasets and finetune on MAN data. The UNet model will create heatmaps of the dot detections, which I can then use for getting templates for the template matching algorithm.
@@ -467,10 +467,10 @@ Will combine all braille datasets together for bulk training, LR in finetuning w
 ### Better Grid Fitting ✔️:
 Current grid fitting is a bit too simple and should be improved. Yucheng informed me there are different grid fitting algorithms out there so I will look into that later on.
 
-### Template Matching Improvements :on:
+### Template Matching Improvements :x:
 Depending on performance on template matching, will maybe have to alter it to get more templates from template matches, so maybe 2-3 runs of template matching with newer templates.
 
-### Decoding Pipeline :on:
+### Decoding Pipeline :x:
 If there's time, I should finish up the decoding pipeline:
 - YOLO oriented crop (may rollback to non oriented YOLO if orientations are poor)
 - UNet for creating dot heatmaps of likely good templates
@@ -501,6 +501,38 @@ Then a local minimization of the parameters is done based on the mean squared di
 Current implementation of origin estimation and hard coded abcd parameters means the current grid fitting works on -4 to 4 degree rotated images but hopefully much better with other parameter estimations.
 
 # Week 14 - 8 may 2025
+## Goals
+### UNet fixes :on:
+Changes to be made for UNet finetuning:
+- use crops of MAN images based on labels
+- for every crop make a template (from the crop itself!)
+- in patch generation code, change heatmap generation to be based on size of template
+- could add an extra line at the top of labels to denote size of heatmap (e.g. 5 for 5x5 templates)
+
+### Better Grid Fitting Changes :on:
+Changes to be made for grid fitting steps:
+1. Change grid template to only include finder pattern
+2. estimate for top left point (already done)
+3. estimate for grid spacing (already done)
+4. estimate for rotation
+   - first try for 45 degrees (in steps of 5) to find good initial 90 deg rotation
+   -  then try every 90 degree rotation to find best orientation
+5. run minimization algorithm to find local minima
+6. draw gridlines based on best fitted finder pattern
+7. match bounding box centers with drawn grids, possibly with from outer-inner method that i used in the past
+
+### Template Matching :on:
+Depending on performance on template matching, will maybe have to alter it to get more templates from template matches, so maybe 2-3 runs of template matching with newer templates.
+
+### Decoding Pipeline :on:
+If there's time, I should finish up the decoding pipeline:
+- YOLO oriented crop (may rollback to non oriented YOLO if orientations are poor)
+- UNet for creating dot heatmaps of likely good templates
+- Method for getting templates from heatmap. Method will likely have to find some heatmap dots close to eachother (e.g. an area where there are 2x2 dots or L dots or sequential dots), then average around them to get 2-4 good templates.
+- Template matching
+- Estimate grid
+- Decode
+
 # Week 15 - 15 may 2025
 # Week 16 - 22 may 2025
 # Week 17 - 29 may 2025
