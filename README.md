@@ -509,7 +509,7 @@ Changes to be made for UNet finetuning:
 - in patch generation code, change heatmap generation to be based on size of template
 - could add an extra line at the top of labels to denote size of heatmap (e.g. 5 for 5x5 templates)
 
-### Better Grid Fitting Changes :on:
+### Better Grid Fitting Changes ✔️:
 Changes to be made for grid fitting steps:
 1. Change grid template to only include finder pattern
 2. estimate for top left point (already done)
@@ -532,6 +532,56 @@ If there's time, I should finish up the decoding pipeline:
 - Template matching
 - Estimate grid
 - Decode
+
+## Outcome of Week
+### Better Grid Fitting
+A rewrite of the grid fitting achieves much better results that previous. Now the grid fitting works up to +-18 deg rotated images, where higher degree rotations only fail due to template match failure (not yet implemented properly).
+
+The grid matching works by generating a standard DMC grid template (finder pattern on the outside but all inner points present), estimating some initial position for the grid and then optimizing the grids parameters.
+
+Changes to parameters used for grid estimation:
+| Parameter  | Interpretation                                           | Starting Point Estimation                                                                                            |
+| ---------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| x0, y0     | center (x,y) coords of grid (grid built from center)     | Estimated by calculating centroid of matched templates                                                               |
+| sx, sy     | horizontal/vertical spacing between gridlines            | Estimated from points that form valid "L" shapes with distances <= median distance of all closest template pairs     |
+| theta      | rotation of grid (radians)                               | Estimated from points that form valid "L" shapes with distances <= median distance * 2 of all closest template pairs |
+
+Valid "L" shapes are triplets of template matches that meet the following requirements:
+- Form an angle close to 90 degrees (current leeway is +- 10 degrees)
+- Distance between "middle" point and other two points does not exceed the median distance of closest points
+
+The below image shows a valid L shape (green) an L shape only valid for theta calculation (yellow) and an invalid L shape (red).
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/L_shapes.png" width="250">
+
+The red L is invalidated due to it's angle.
+The yellow L is invalidated for (sx, sy) calculation due to it's distances, but a looser distance requirement is nice to have for theta calculation to have more L shapes overall. The incorrect theta from this particular L shape is accounted for later by taking the median thetas of all green + yellow L shapes.
+
+Below is an example of how a typical starting estimation for the grid looks. The estimated starting parameters were (200.9, 213.2, 16.8, 17.5, 0.30).
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/start_estimation.png" width="250">
+
+After a good starting grid is found, the parameters are optimized based on the MSE of the closest grid-point to each template matching. More weight is put onto template matches further away from the template matches centroid, so that the optimization process prefers to keep the grid within the template matches area.
+
+The optimization process works in steps that provide a better optimization than optimizing for all parameters at once:
+1. Optimize for center of grid
+2. Optimize for spacing of grid
+3. Optimize for angle of grid
+   - Other three 90 degree angles are also checked to seee if they have lower costs
+4. Optimize for all parameters at once
+
+Below table shows how the optimization looks at each step.
+| Starting Estimate | Optimize for Center | Optimize for Spacing | Optimize for Angle | Optimize for All |
+|:-----------------:|:-------------------:|:--------------------:|:------------------:|:----------------:|
+|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/start_estimation.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/opt_center.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/opt_spacing.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/opt_angle.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/opt_all.png" width="250">|
+
+After optimizing the grid, the grid points are mapped to the template matches and the decoding process is done. Mapped grids and resulting DMC shown below.
+
+| Mapped Grid Points | Resulting DMC |
+|:------------------:|:-------------:|
+|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/mapped_grid.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/resulting_dmc.png" width="250">|
+
+Note that in this example some template matches fail, resulting in an incomplete DMC. However, the missing template matches belong to the finder pattern and error correction parts of the DMC, so this example still decodes correctly (try with your phone camera 📸).
 
 # Week 15 - 15 may 2025
 # Week 16 - 22 may 2025
