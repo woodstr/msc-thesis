@@ -521,7 +521,7 @@ Changes to be made for grid fitting steps:
 6. draw gridlines based on best fitted finder pattern
 7. match bounding box centers with drawn grids, possibly with from outer-inner method that i used in the past
 
-### Template Matching :on:
+### Template Matching ✔️:
 Depending on performance on template matching, will maybe have to alter it to get more templates from template matches, so maybe 2-3 runs of template matching with newer templates.
 
 ### Decoding Pipeline :on:
