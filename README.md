@@ -583,6 +583,19 @@ After optimizing the grid, the grid points are mapped to the template matches an
 
 Note that in this example some template matches fail, resulting in an incomplete DMC. However, the missing template matches belong to the finder pattern and error correction parts of the DMC, so this example still decodes correctly (try with your phone camera 📸).
 
+### Cascade Template Matching
+Template matching has been improved.
+
+The improvement works by running an initial template matching as normal, taking some of the new matches as new templates, and then rerunning the template matching with those.
+
+The selecting process for new templates is to take the top K most diverse (different) templates from the matches of the initial template matching. The diversity is based on each candidate templates "Hu Moment", which are numbers that characterize the shape of an object.
+
+Below images showcase cascade matching at different values of K for an image with an imperfect initial template.
+
+| Initial Template Matching | Cascade K=1 | Cascade K=2 | Cascade K=3 |
+|:-------------------------:|:-----------:|:-----------:|:-----------:|
+|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/single_template_matching.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/cascade_template_matching_k1.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/cascade_template_matching_k2.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/cascade_template_matching_k3.png" width="250">|
+
 # Week 15 - 15 may 2025
 # Week 16 - 22 may 2025
 # Week 17 - 29 may 2025
