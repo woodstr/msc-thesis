@@ -534,8 +534,21 @@ If there's time, I should finish up the decoding pipeline:
 - Decode
 
 ## Outcome of Week
+### Cascade Template Matching
+Template matching has been improved.
+
+The improvement works by running an initial template matching as normal, taking some of the new matches as new templates, and then rerunning the template matching with those.
+
+The selecting process for new templates is to take the top K most diverse (different) templates from the matches of the initial template matching. The diversity is based on each candidate templates "Hu Moment", which are numbers that characterize the shape of an object.
+
+Below images showcase cascade matching at different values of K for an image with an imperfect initial template.
+
+| Initial Template Matching | Cascade K=1 | Cascade K=2 | Cascade K=3 |
+|:-------------------------:|:-----------:|:-----------:|:-----------:|
+|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/single_template_matching.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/cascade_template_matching_k1.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/cascade_template_matching_k2.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/cascade_template_matching_k3.png" width="250">|
+
 ### Better Grid Fitting
-A rewrite of the grid fitting achieves much better results that previous. Now the grid fitting works up to +-18 deg rotated images, where higher degree rotations only fail due to template match failure (not yet implemented properly).
+A rewrite of the grid fitting achieves much better results that previous. With perfect template matching the grid fitting now works for all 360 deg rotated images.
 
 The grid matching works by generating a standard DMC grid template (finder pattern on the outside but all inner points present), estimating some initial position for the grid and then optimizing the grids parameters.
 
@@ -543,12 +556,12 @@ Changes to parameters used for grid estimation:
 | Parameter  | Interpretation                                           | Starting Point Estimation                                                                                            |
 | ---------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | x0, y0     | center (x,y) coords of grid (grid built from center)     | Estimated by calculating centroid of matched templates                                                               |
-| sx, sy     | horizontal/vertical spacing between gridlines            | Estimated from points that form valid "L" shapes with distances <= median distance of all closest template pairs     |
-| theta      | rotation of grid (radians)                               | Estimated from points that form valid "L" shapes with distances <= median distance * 2 of all closest template pairs |
+| sx, sy     | horizontal/vertical spacing between gridlines            | Estimated from points that form valid "L" shapes with distances <= mode distance of all closest template pairs       |
+| theta      | rotation of grid (radians)                               | Estimated from points that form valid "L" shapes with distances <= mode distance * 2 of all closest template pairs   |
 
 Valid "L" shapes are triplets of template matches that meet the following requirements:
 - Form an angle close to 90 degrees (current leeway is +- 10 degrees)
-- Distance between "middle" point and other two points does not exceed the median distance of closest points
+- Distance between "middle" point and other two points does not exceed the modal distance of closest points
 
 The below image shows a valid L shape (green) an L shape only valid for theta calculation (yellow) and an invalid L shape (red).
 
@@ -568,7 +581,7 @@ The optimization process works in steps that provide a better optimization than 
 1. Optimize for center of grid
 2. Optimize for spacing of grid
 3. Optimize for angle of grid
-   - Other three 90 degree angles checked again to seee if they have lower costs <-- may remove this in future
+   - (may remove this in future) Other three 90 degree angles checked again to seee if they have lower costs
 4. Optimize for all parameters at once
 
 Below table shows how the optimization looks at each step.
@@ -583,19 +596,6 @@ After optimizing the grid, the grid points are mapped to the template matches an
 |<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/mapped_grid.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/resulting_dmc.png" width="250">|
 
 Note that in this example some template matches fail, resulting in an incomplete DMC. However, the missing template matches belong to the finder pattern and error correction parts of the DMC, so this example still decodes correctly (try with your phone camera 📸).
-
-### Cascade Template Matching
-Template matching has been improved.
-
-The improvement works by running an initial template matching as normal, taking some of the new matches as new templates, and then rerunning the template matching with those.
-
-The selecting process for new templates is to take the top K most diverse (different) templates from the matches of the initial template matching. The diversity is based on each candidate templates "Hu Moment", which are numbers that characterize the shape of an object.
-
-Below images showcase cascade matching at different values of K for an image with an imperfect initial template.
-
-| Initial Template Matching | Cascade K=1 | Cascade K=2 | Cascade K=3 |
-|:-------------------------:|:-----------:|:-----------:|:-----------:|
-|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/single_template_matching.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/cascade_template_matching_k1.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/cascade_template_matching_k2.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/cascade_template_matching/cascade_template_matching_k3.png" width="250">|
 
 # Week 15 - 15 may 2025
 # Week 16 - 22 may 2025
