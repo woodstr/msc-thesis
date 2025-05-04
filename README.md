@@ -564,10 +564,11 @@ Below is an example of how a typical starting estimation for the grid looks. The
 After a good starting grid is found, the parameters are optimized based on the MSE of the closest grid-point to each template matching. More weight is put onto template matches further away from the template matches centroid, so that the optimization process prefers to keep the grid within the template matches area.
 
 The optimization process works in steps that provide a better optimization than optimizing for all parameters at once:
+0. Check other three 90 degree angles to see if a lower-cost starting angle exists
 1. Optimize for center of grid
 2. Optimize for spacing of grid
 3. Optimize for angle of grid
-   - Other three 90 degree angles are also checked to seee if they have lower costs
+   - Other three 90 degree angles checked again to seee if they have lower costs <-- may remove this in future
 4. Optimize for all parameters at once
 
 Below table shows how the optimization looks at each step.
