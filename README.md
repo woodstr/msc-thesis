@@ -570,7 +570,7 @@ The below image shows a valid L shape (green) an L shape only valid for theta ca
 The red L is invalidated due to it's angle.
 The yellow L is invalidated for (sx, sy) calculation due to it's distances, but a looser distance requirement is nice to have for theta calculation to have more L shapes overall. The incorrect theta from this particular L shape is accounted for later by taking the median thetas of all green + yellow L shapes.
 
-Below is an example of how a typical starting estimation for the grid looks. The estimated starting parameters were (200.9, 213.2, 16.8, 17.5, 0.30).
+Below is an example of how a typical starting estimation for the grid looks. The estimated starting parameters were (227.3, 240.0, 17.0, 17.0, 0.79).
 
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/start_estimation.png" width="250">
 
@@ -595,7 +595,15 @@ After optimizing the grid, the grid points are mapped to the template matches an
 |:------------------:|:-------------:|
 |<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/mapped_grid.png" width="250">|<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/resulting_dmc.png" width="250">|
 
-Note that in this example some template matches fail, resulting in an incomplete DMC. However, the missing template matches belong to the finder pattern and error correction parts of the DMC, so this example still decodes correctly (try with your phone camera 📸).
+Cool GIF showing the process.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/grid_fitting/ezgif.com-animated-gif-maker.gif" width="250">
+
+Note that on some angles the methods fail! This happens if the initial start is not good enough. In this case the optimization process may have a row/col that sticks out of bounds of the matched templates. I have thought of a couple methods that could deal with this issue, but will only implement it if time allows.
+
+The first method is to increase the dimensionality of the grid template. In theory, we don't actually need the dimensionality of the grid template to match the DMC. An oversized grid template _should_ still optimize well over the dots. We can then invert the dots the same way, and post-process to remove empty rows/columns from the DMC matrix, giving us back the 16x16 grid.
+
+The second method would be to change the minimization objective. Instead of minimizing observed dots to their closest grid template dots, we could minimize observed dots to their 4 nearest grid dots. If we add an extra couple rows and colums to the grid template (or implement the first method), the optimization process may be smoother, and we would end up with the grid template making "squares" around each dot. We can still just as easily invert these dots back to DMC matrix and decode from there..
 
 # Week 15 - 15 may 2025
 # Week 16 - 22 may 2025
