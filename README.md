@@ -502,7 +502,7 @@ Current implementation of origin estimation and hard coded abcd parameters means
 
 # Week 14 - 8 may 2025
 ## Goals
-### UNet fixes :on:
+### UNet fixes ✔️:
 Changes to be made for UNet finetuning:
 - use crops of MAN images based on labels
 - for every crop make a template (from the crop itself!)
@@ -603,7 +603,40 @@ Note that on some angles the methods fail! This happens if the initial start is 
 
 The first method is to increase the dimensionality of the grid template. In theory, we don't actually need the dimensionality of the grid template to match the DMC. An oversized grid template _should_ still optimize well over the dots. We can then invert the dots the same way, and post-process to remove empty rows/columns from the DMC matrix, giving us back the 16x16 grid.
 
-The second method would be to change the minimization objective. Instead of minimizing observed dots to their closest grid template dots, we could minimize observed dots to their 4 nearest grid dots. If we add an extra couple rows and colums to the grid template (or implement the first method), the optimization process may be smoother, and we would end up with the grid template making "squares" around each dot. We can still just as easily invert these dots back to DMC matrix and decode from there..
+The second method would be to change the minimization objective. Instead of minimizing observed dots to their closest grid template dots, we could minimize observed dots to their 4 nearest grid dots. If we add an extra couple rows and colums to the grid template (or implement the first method), the optimization process may be smoother, and we would end up with the grid template making "squares" around each dot. We can still just as easily invert these dots back to DMC matrix and decode from there.
+
+### UNet Fixes
+The following changes were done to finetune the UNet model on MAN images:
+- labelling of dot x,y coords completed
+- patch augmentations done after cropping down to DMC area
+- manual crops of dots saved for sizing the heatmap gaussian dists correctly during generation
+  - patch labels include line at top for t_size. If False (for none MAN training image) a default size is used
+
+Some work still needs to be done to get better finetuning results, but the finetuning does not completely kill the models predictions anymore.
+
+Braille.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/braille_1.png" width="500">
+
+Finetuned.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/finetuned_1.png" width="500">
+
+Braille.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/braille_2.png" width="500">
+
+Finetuned.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/finetuned_2.png" width="500">
+
+Braille.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/braille_3.png" width="500">
+
+Finetuned.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/finetuned_3.png" width="500">
 
 # Week 15 - 15 may 2025
 # Week 16 - 22 may 2025
