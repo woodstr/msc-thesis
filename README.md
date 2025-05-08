@@ -524,7 +524,7 @@ Changes to be made for grid fitting steps:
 ### Template Matching ✔️:
 Depending on performance on template matching, will maybe have to alter it to get more templates from template matches, so maybe 2-3 runs of template matching with newer templates.
 
-### Decoding Pipeline :on:
+### Decoding Pipeline :x:
 If there's time, I should finish up the decoding pipeline:
 - YOLO oriented crop (may rollback to non oriented YOLO if orientations are poor)
 - UNet for creating dot heatmaps of likely good templates
@@ -637,6 +637,22 @@ Braille.
 Finetuned.
 
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/finetuned_3.png" width="500">
+
+### Decoding Pipeline
+Decoding pipeline close to being completed.
+
+Still working on method for extracting template fron UNet output, currently can extract template from low-res UNet input (384x384) but would like to keep original image quality for optimal template matching.
+
+Desired decoding pipeline:
+- Load original image directly to tensor
+- YOLO inference to get two crop versions. xywhr converted back to original image space to keep high quality:
+  - YOLO crop           (for use as input to UNet)
+  - YOLO crop + padding (for use in later template matching)
+- UNet inference on YOLO crop to get coords for template area. YOLO crop used to reduce false positives (crop is sometimes too small). coords converted back to original YOLO crop space to keep high quality (not implemented yet):
+- Template extracted from "YOLO crop + padding" to ensure entire DMC present.
+- Cascade template matching
+- Grid fitting
+- DMC decoding
 
 # Week 15 - 15 may 2025
 # Week 16 - 22 may 2025
