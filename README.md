@@ -668,7 +668,7 @@ On identification of specific failures will improve methods. E.g. if grid fittin
 ### Watershed Segmentation :on:
 For template extraction, watershed segmentation will be useful to extract the templates on overlapping dots.
 
-This, along with similar L finding method to validate dots, the Hu Moments can be used to select top K dot template for use in template matching.
+This, along with similar L finding method to validate dots, the Hu Moments can be used to select top K dot templates for use in template matching.
 
 ### UNet Training Change :on:
 Mix MAN dataset with Braille during training. This may be better than simply finetuning on MAN data.
