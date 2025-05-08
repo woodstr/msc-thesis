@@ -14,8 +14,8 @@ Weekly supervisor meetings occur on Thursdays at 13:30.
 * [Week 10](#week-10---10-april-2025)
 * [Week 11 to 12](#week-11-to-12---24-april-2025)
 * [Week 13](#week-13---1-may-2025)
-* [Week 14](#week-14---8-may-2025) <-- current
-* [Week 15](#week-15---15-may-2025)
+* [Week 14](#week-14---8-may-2025)
+* [Week 15](#week-15---15-may-2025) <-- current
 * [Week 16](#week-16---22-may-2025)
 * [Week 17](#week-17---29-may-2025)
 
@@ -655,6 +655,34 @@ Desired decoding pipeline:
 - DMC decoding
 
 # Week 15 - 15 may 2025
+## Goals
+### Finish Pipeline :on:
+Finish the full decoding pipeline and test thoroughly on more images with full debugging enabled.
+
+Double check that same retinex used during UNet training is used in full pipeline.
+
+Full debugging will show the decoding process at every step, allowing me to see what step causes failure cases.
+
+On identification of specific failures will improve methods. E.g. if grid fitting is the only point of failure I will implement my previous ideas for improvement of grid fitting.
+
+### Watershed Segmentation :on:
+For template extraction, watershed segmentation will be useful to extract the templates on overlapping dots.
+
+This, along with similar L finding method to validate dots, the Hu Moments can be used to select top K dot template for use in template matching.
+
+### UNet Training Change :on:
+Mix MAN dataset with Braille during training. This may be better than simply finetuning on MAN data.
+
+Can use sampler param in pytorch dataloader to ensure balance. Will also add debug information in labels (source of data) so that I can print during training to ensure each batch is 50/50 braille and MAN (ig they should be shuffled too).
+
+### (Optional) Cascade Template Matching Change :on:
+During cascade template matching, can do it only in the areas near template dots, e.g. around a radius of the template, but ensure that entire image is used overall.
+
+This would make the process computationally cheaper but not necessarily more accurate, so I will only do this if required / time allows.
+
+## Outcome of Week
+TBD
+
 # Week 16 - 22 may 2025
 # Week 17 - 29 may 2025
 ## Goals
