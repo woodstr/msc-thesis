@@ -670,7 +670,7 @@ For template extraction, watershed segmentation will be useful to extract the te
 
 This, along with similar L finding method to validate dots, the Hu Moments can be used to select top K dot templates for use in template matching.
 
-### UNet Training Change :on:
+### UNet Training Change ✔️:
 Mix MAN dataset with Braille during training. This may be better than simply finetuning on MAN data.
 
 Can use sampler param in pytorch dataloader to ensure balance. Will also add debug information in labels (source of data) so that I can print during training to ensure each batch is 50/50 braille and MAN (ig they should be shuffled too).
@@ -681,7 +681,46 @@ During cascade template matching, can do it only in the areas near template dots
 This would make the process computationally cheaper but not necessarily more accurate, so I will only do this if required / time allows.
 
 ## Outcome of Week
-TBD
+### UNet Training Change
+Braille and MAN datasets mixed by creating two pytorch datasets, oversampling the MAN dataset to have equal size to braille, concatting the two datasets, and feeding that into the dataloader.
+
+The results look better than previous!
+
+Braille.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/braille_1.png" width="500">
+
+Finetuned.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/finetuned_1.png" width="500">
+
+Mixed.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/mixed_1.png" width="500">
+
+Braille.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/braille_2.png" width="500">
+
+Finetuned.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/finetuned_2.png" width="500">
+
+Mixed.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/mixed_2.png" width="500">
+
+Braille.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/braille_3.png" width="500">
+
+Finetuned.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/finetuned_3.png" width="500">
+
+Mixed.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/mixed_3.png" width="500">
 
 # Week 16 - 22 may 2025
 # Week 17 - 29 may 2025
