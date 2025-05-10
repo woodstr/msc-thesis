@@ -738,7 +738,7 @@ UNet dot finding.
 
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/reflectance_image.png" width="250"><img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/illumination_image.png" width="250"><img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/unet_heatmap.png" width="250">
 
-Template matching.
+Template matching. (only 2 templates shown...)
 
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/template_matching.png" width="500">
 
