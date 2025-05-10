@@ -656,7 +656,7 @@ Desired decoding pipeline:
 
 # Week 15 - 15 may 2025
 ## Goals
-### Finish Pipeline :on:
+### Finish Pipeline ✔️:
 Finish the full decoding pipeline and test thoroughly on more images with full debugging enabled.
 
 Double check that same retinex used during UNet training is used in full pipeline.
@@ -721,6 +721,36 @@ Finetuned.
 Mixed.
 
 <img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/UNet_finetuning/mixed_3.png" width="500">
+
+### Pipeline Updates
+The full pipeline has been put together with some added tweaks:
+- template extraction method slightly altered to get better templates by looking at circular region of bright pixel instead of square
+- initial template matching done with K templates (with NMS after), and another round of template matching done with K of those matches
+- outlier removal of matched templates done with DBSCAN
+
+Below is an example of full pipeline from image input to output decoded string.
+
+YOLO cropping.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/rotated_image.png" width="250"><img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/yolo_detection.png" width="250"><img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/yolo_crop_post_padding.png" width="250">
+
+UNet dot finding.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/reflectance_image.png" width="250"><img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/illumination_image.png" width="250"><img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/unet_heatmap.png" width="250">
+
+Template matching.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/template_matching.png" width="500">
+
+Grid fitting.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/initial_grid_fitting.png" width="250"><img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/optimized_grid_fitting.png" width="250"><img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/mapped_grid.png" width="250">
+
+Decoding.
+
+<img src="https://github.com/woodstr/msc-thesis/blob/main/figures/github_readme/pipeline/resulting_grid.png" width="250">
+
+Decoded string (try on your phone): 1D1I65212740006
 
 # Week 16 - 22 may 2025
 # Week 17 - 29 may 2025
