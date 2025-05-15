@@ -665,7 +665,7 @@ Full debugging will show the decoding process at every step, allowing me to see 
 
 On identification of specific failures will improve methods. E.g. if grid fitting is the only point of failure I will implement my previous ideas for improvement of grid fitting.
 
-### Watershed Segmentation :on:
+### Watershed Segmentation :x:
 For template extraction, watershed segmentation will be useful to extract the templates on overlapping dots.
 
 This, along with similar L finding method to validate dots, the Hu Moments can be used to select top K dot templates for use in template matching.
@@ -675,7 +675,7 @@ Mix MAN dataset with Braille during training. This may be better than simply fin
 
 Can use sampler param in pytorch dataloader to ensure balance. Will also add debug information in labels (source of data) so that I can print during training to ensure each batch is 50/50 braille and MAN (ig they should be shuffled too).
 
-### (Optional) Cascade Template Matching Change :on:
+### (Optional) Cascade Template Matching Change :x:
 During cascade template matching, can do it only in the areas near template dots, e.g. around a radius of the template, but ensure that entire image is used overall.
 
 This would make the process computationally cheaper but not necessarily more accurate, so I will only do this if required / time allows.
