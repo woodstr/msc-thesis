@@ -1,0 +1,89 @@
+1: success
+2: success
+3: success
+4: success
+5: U-Net failure
+6: U-Net failure
+7: yolo failure
+8: U-Net failure
+9: success
+10: success
+11: U-Net failure
+12: U-Net failure
+13: U-Net failure
+14: U-Net failure
+15: TM failure
+16: U-Net failure
+17: U-Net failure
+18: U-Net failure
+19: U-Net failure
+20: U-Net failure
+21: success
+22: U-Net failure
+23: U-Net failure
+24: U-Net failure
+25: success
+26: U-Net failure
+27: U-Net failure
+28: U-Net failure
+29: U-Net failure
+30: grid fitting failure
+31: yolo failure
+32: yolo failure
+33: U-Net failure
+34: U-Net failure
+35: success
+36: U-Net failure
+37: U-Net failure
+38: U-Net failure
+39: TM failure
+40: success
+41: yolo failure
+42: U-Net failure
+43: grid fitting failure
+44: yolo failure
+45: yolo failure
+46: yolo failure
+47: U-Net failure
+48: U-Net failure
+49: U-Net failure
+50: yolo failure
+51: yolo failure
+52: success
+53: grid fitting failure
+54: success
+55: U-Net failure
+56: U-Net failure
+57: TM failure
+58: success
+59: U-Net failure
+60: U-Net failure
+61: U-Net failure
+62: U-Net failure
+63: yolo failure
+64: TM failure
+65: U-Net failure
+66: success
+
+Val
+1: U-Net failure
+2: U-Net failure
+3: U-Net failure
+4: U-Net failure
+5: U-Net failure
+6: success
+7: U-Net failure
+8: yolo failure
+9: yolo failure
+10: yolo failure
+11: U-Net failure
+12: TM failure
+13: yolo failure
+14: yolo failure
+15: TM failure
+16: success
+17: grid fitting failure
+18: grid fitting failure
+19: grid fitting failure
+20: TM failure
+21: U-Net failure

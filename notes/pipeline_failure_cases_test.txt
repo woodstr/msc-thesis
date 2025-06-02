@@ -1,0 +1,36 @@
+1: yolo failure
+2: TM failure
+3: grid fitting failure
+4: UNet failure
+5: UNet failure
+6: yolo failure
+7: yolo failure
+8: success
+9: success
+10: yolo failure
+11: UNet failure
+12: yolo failure
+13: UNet failure
+14: yolo failure
+15: yolo failure
+16: UNet failure
+17: UNet failure
+18: yolo failure
+19: success
+20: TM failure
+21: TM failure
+22: UNet failure
+23: grid fitting
+24: UNet failure
+25: UNet failure
+26: UNet failure
+27: TM failure
+28: grid fitting failure
+29: UNet failure
+30: UNet failure
+31: yolo failure
+32: TM failure
+33: UNet failure
+34: grid fitting failure
+35: grid fitting failure
+36: UNet failure

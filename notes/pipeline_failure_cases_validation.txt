@@ -1,0 +1,21 @@
+1: U-Net failure
+2: U-Net failure
+3: U-Net failure
+4: U-Net failure
+5: U-Net failure
+6: success
+7: U-Net failure
+8: yolo failure
+9: yolo failure
+10: yolo failure
+11: U-Net failure
+12: TM failure
+13: yolo failure
+14: yolo failure
+15: TM failure
+16: success
+17: grid fitting failure
+18: grid fitting failure
+19: grid fitting failure
+20: TM failure
+21: U-Net failure

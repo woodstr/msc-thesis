@@ -1,0 +1,5 @@
+train: C:\\Users\\aidan\\OneDrive\\Desktop\\itu\\msc\\courses\\sem4\\thesis\\msc-thesis\\data\\MAN\\roboflow_oriented_boxes\\train\\images
+val: C:\\Users\\aidan\\OneDrive\\Desktop\\itu\\msc\\courses\\sem4\\thesis\\msc-thesis\\data\\MAN\\roboflow_oriented_boxes\\valid\\images
+
+nc: 2
+names: ['dot-peen', 'laser']
